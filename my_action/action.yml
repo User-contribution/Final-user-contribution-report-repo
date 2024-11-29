@@ -35,7 +35,7 @@ inputs:
 
 runs:
   using: 'node12'
-  main: 'my_action/index.js'
+  main: '/index.js'
 
 branding:
   icon: 'list'
