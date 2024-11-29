@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Generate Member Contributions Report
-        uses: nicklegan/github-org-member-contribution-action@v1.1.1
+        uses: dockerdemo123/testing/my_action@main
         with:
           token: ${{ secrets.GH_TOKEN }}
           fromdate: ${{ github.event.inputs.fromdate || '' }}
