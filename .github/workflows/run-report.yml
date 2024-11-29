@@ -1,0 +1,23 @@
+name: Generate Contribution Report
+
+on:
+  push:
+    branches:
+      - main  # This will trigger the workflow on a push to the 'main' branch
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest  # The runner environment
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Run the GitHub Organization Contribution Report Action
+      - name: Run Contribution Report Action
+        uses: ./action.yml  # Use the local path or public GitHub repo of your action
+        with:
+          token: ${{ secrets.GH_TOKEN }}  # Pass the GitHub token stored in secrets
+          org: 'dockerdemo123'  # Your GitHub Organization
+          days: '30'  # Specify how many days of data to collect
