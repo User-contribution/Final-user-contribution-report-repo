@@ -1,0 +1,43 @@
+name: GitHub Organization Member Contribution Report Action
+description: 'Generate a report of member contributions for a specific GitHub organization'
+
+inputs:
+  token:
+    description: 'A Personal Access token with repo, read:org and read:user scope'
+    required: true
+    # Provide your token as a GitHub secret
+    value: ${{ secrets.GH_TOKEN }}
+  org:
+    description: 'GitHub organization name'
+    required: true
+    value: 'dockerdemo123'  # Replace with your actual organization name
+  days:
+    description: 'Amount of days in the past to collect data for'
+    default: '30'
+    required: false
+  sort:
+    description: 'Column used for sorting report results'
+    default: 'commitContrib'  # You can change this if you want to sort by another column
+    required: false
+  committer-name:
+    description: 'The name of the committer that will appear in the Git history'
+    default: 'github-actions'
+    required: false
+  committer-email:
+    description: 'The committer email that will appear in the Git history'
+    default: 'github-actions@github.com'
+    required: false
+  fromdate:
+    description: 'The date from which to start collecting data'
+    required: false
+  todate:
+    description: 'The date to which to stop collecting data'
+    required: false
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+
+branding:
+  icon: 'list'
+  color: 'blue'
