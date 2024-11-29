@@ -1,0 +1,30 @@
+name: Member Contribution Report
+
+on:
+  # Runs on the first day of every month at 00:00 UTC
+  schedule:
+    - cron: '0 0 1 * *'
+  # Allows manual triggering of the workflow
+  workflow_dispatch:
+    inputs:
+      fromdate:
+        description: 'Optional interval start date (format: yyyy-mm-dd)'
+        required: false
+      todate:
+        description: 'Optional interval end date (format: yyyy-mm-dd)'
+        required: false
+
+jobs:
+  member-contribution-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Generate Member Contributions Report
+        uses: nicklegan/github-org-member-contribution-action@v1.1.1
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          fromdate: ${{ github.event.inputs.fromdate || '' }}
+          todate: ${{ github.event.inputs.todate || '' }}
